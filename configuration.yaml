@@ -1,0 +1,102 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret location_latitude
+  longitude: !secret location_longitude
+  # Impacts weather/sunrise data
+  elevation: !secret location_elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Los_Angeles
+
+  customize:
+    light.ge_appliances_zll_light_0014fa37_1:
+      friendly_name: Unused
+    light.osram_lightify_a19_rgbw_00a4361c_3:
+      friendly_name: Bedside (Ryan)
+    light.osram_lightify_a19_tunable_white_0002484e_3:
+      friendly_name: Bedside (Liz)
+      supported_features: 35
+      min_mireds: 154
+      max_mireds: 375
+    light.osram_lightify_a19_rgbw_00a43477_3:
+      friendly_name: Bedroom Overhead 1
+    light.osram_lightify_a19_rgbw_00a4403c_3:
+      friendly_name: Bedroom Overhead 2
+    light.osram_lightify_a19_rgbw_00a44fcb_3:
+      friendly_name: Bedroom Overhead 3
+group:
+  bedside_lights:
+    name: Bedside Lights 
+#    control: hidden
+    entities:
+      - light.osram_lightify_a19_rgbw_00a4361c_3
+      - light.osram_lightify_a19_tunable_white_0002484e_3
+  bedroom_overhead:
+    name: Bedroom Overhead
+    entities: 
+      - light.osram_lightify_a19_rgbw_00a43477_3
+      - light.osram_lightify_a19_rgbw_00a4403c_3
+      - light.osram_lightify_a19_rgbw_00a44fcb_3
+  bedroom:
+    name: Bedroom
+    control: hidden
+    view: yes
+    icon: mdi:hotel
+    entities:
+#      - light.ge_appliances_zll_light_0014fa37_1
+      - group.bedside_lights
+      - group.bedroom_overhead
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: PASSWORD
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+#sensor:
+#  platform: yr
+
+mqtt:
+  broker: localhost
+  port: 1883
+  client_id: !secret mqtt_client_id
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  keepalive: 60
+  protocol: 3.1
+
+#zwave:
+#  usb_path: /dev/zwave
+
+zha:
+  usb_path: /dev/zigbee
+  database_path: /home/homeassistant/.homeassistant/zigbee.db
+#  baud: 115201
+
+  
