@@ -10,23 +10,19 @@ homeassistant:
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/Los_Angeles
+  
+  customize: !include customize.yaml
 
-  customize:
-    light.ge_appliances_zll_light_0014fa37_1:
-      friendly_name: Unused
-    light.osram_lightify_a19_rgbw_00a4361c_3:
-      friendly_name: Bedside (Ryan)
-    light.osram_lightify_a19_tunable_white_0002484e_3:
-      friendly_name: Bedside (Liz)
-      supported_features: 35
-      min_mireds: 154
-      max_mireds: 375
-    light.osram_lightify_a19_rgbw_00a43477_3:
-      friendly_name: Bedroom Overhead 1
-    light.osram_lightify_a19_rgbw_00a4403c_3:
-      friendly_name: Bedroom Overhead 2
-    light.osram_lightify_a19_rgbw_00a44fcb_3:
-      friendly_name: Bedroom Overhead 3
+automation: !include automations.yaml
+
+light:
+  - platform: group
+    name: Bedroom Overhead Group
+    entities:
+      - light.osram_lightify_a19_rgbw_00a43477_3
+      - light.osram_lightify_a19_rgbw_00a4403c_3
+      - light.osram_lightify_a19_rgbw_00a44fcb_3
+
 group:
   bedside_lights:
     name: Bedside Lights 
@@ -78,25 +74,31 @@ logbook:
 # Track the sun
 sun:
 
+config:
+
 # Weather Prediction
 #sensor:
 #  platform: yr
 
-mqtt:
-  broker: localhost
-  port: 1883
-  client_id: !secret mqtt_client_id
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  keepalive: 60
-  protocol: 3.1
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
 
-#zwave:
-#  usb_path: /dev/zwave
+#mqtt:
+#  broker: localhost
+#  port: 1883
+#  client_id: !secret mqtt_client_id
+#  username: !secret mqtt_username
+#  password: !secret mqtt_password
+#  keepalive: 60
+#  protocol: 3.1
 
 zha:
   usb_path: /dev/zigbee
   database_path: /home/homeassistant/.homeassistant/zigbee.db
 #  baud: 115201
 
-  
+zwave:
+  usb_path: /dev/ttyUSB0  

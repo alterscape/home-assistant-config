@@ -10,10 +10,11 @@ apps
 .uuid
 www
 OZW_Log.txt
+pyozw.sqlite
 home-assistant.log
 zigbee.db
 home-assistant_v2.db
 secrets.yaml
 secrets.yml
 known_devices.yml
-
+.storage
