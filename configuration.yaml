@@ -17,40 +17,25 @@ automation: !include automations.yaml
 
 light:
   - platform: group
-    name: Bedroom Overhead Group
+    name: Office Wash Lights
     entities:
-      - light.osram_lightify_a19_rgbw_00a43477_3
-      - light.osram_lightify_a19_rgbw_00a4403c_3
-      - light.osram_lightify_a19_rgbw_00a44fcb_3
+      - light.gledopto_gl_c_007_1ba6e3b8_15
+      - light.gledopto_gl_c_007_1ba6e3cb_15
+      - light.gledopto_gl_c_007_1ba6f8f6_15
+  - platform: group
+    name: Office Wash Color
+    entities:
+      - light.gledopto_gl_c_007_1ba6e3b8_11 
+      - light.gledopto_gl_c_007_1ba6e3cb_11
+      - light.gledopto_gl_c_007_1ba6f8f6_11
 
-group:
-  bedside_lights:
-    name: Bedside Lights 
-#    control: hidden
-    entities:
-      - light.osram_lightify_a19_rgbw_00a4361c_3
-      - light.osram_lightify_a19_tunable_white_0002484e_3
-  bedroom_overhead:
-    name: Bedroom Overhead
-    entities: 
-      - light.osram_lightify_a19_rgbw_00a43477_3
-      - light.osram_lightify_a19_rgbw_00a4403c_3
-      - light.osram_lightify_a19_rgbw_00a44fcb_3
-  bedroom:
-    name: Bedroom
-    control: hidden
-    view: yes
-    icon: mdi:hotel
-    entities:
-#      - light.ge_appliances_zll_light_0014fa37_1
-      - group.bedside_lights
-      - group.bedroom_overhead
 
 # Show links to resources in log and frontend
 # introduction:
 
 # Enables the frontend
 frontend:
+  javascript_version: latest
 
 http:
   # Uncomment this to add a password (recommended!)
@@ -86,6 +71,11 @@ sensor:
       - 'time'
       - 'date'
 
+input_boolean:
+  office_occupied:
+    name: Office occupied
+    icon: mdi:office-building
+
 #mqtt:
 #  broker: localhost
 #  port: 1883
@@ -102,3 +92,8 @@ zha:
 
 zwave:
   usb_path: /dev/ttyUSB0  
+
+custom_updater:
+  card_urls:
+      - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
+      - https://raw.githubusercontent.com/ljmerza/light-entity-card/master/custom_updater.json

@@ -1,17 +1,7 @@
-light.ge_appliances_zll_light_0014fa37_1:
-  friendly_name: Unused
-light.osram_lightify_a19_rgbw_00a4361c_3:
-  friendly_name: Bedside (Window)
 light.osram_lightify_a19_tunable_white_0002484e_3:
   friendly_name: Bedside (Closet)
   max_mireds: 365
   min_mireds: 154
-light.osram_lightify_a19_rgbw_00a43477_3:
-  friendly_name: Bedroom Overhead 1
-light.osram_lightify_a19_rgbw_00a4403c_3:
-  friendly_name: Bedroom Overhead 2
-light.osram_lightify_a19_rgbw_00a44fcb_3:
-  friendly_name: Bedroom Overhead 3
 zwave.aeotec_dsa03202_minimote:
   new_entity_id: zwave.aeotec_minimote_ryan
 sensor.osram_lightify_a19_tunable_white_0002484e_3_2820:
@@ -19,4 +9,14 @@ sensor.osram_lightify_a19_tunable_white_0002484e_3_2820:
 sensor.osram_lightify_a19_tunable_white_0002263d_3_2820:
   hidden: true
 zwave.sigma_designs_uzb_z_wave_usb_adapter:
+  hidden: true
+sensor.alarm_level:
+  hidden: true
+sensor.alarm_type:
+  hidden: true
+sensor.aeotec_zw130_wallmote_quad_sourcenodeid:
+  hidden: true
+zwave.battery_switch:
+  hidden: true
+light.battery_switch_level:
   hidden: true
