@@ -18,3 +18,4 @@ secrets.yaml
 secrets.yml
 known_devices.yml
 .storage
+__pycache__

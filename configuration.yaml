@@ -13,6 +13,8 @@ homeassistant:
   
   customize: !include customize.yaml
 
+system_health:
+
 automation: !include automations.yaml
 
 light:
@@ -28,6 +30,12 @@ light:
       - light.gledopto_gl_c_007_1ba6e3b8_11 
       - light.gledopto_gl_c_007_1ba6e3cb_11
       - light.gledopto_gl_c_007_1ba6f8f6_11
+  - platform: group
+    name: Office Floor Lamp
+    entities:
+      - light.osram_lightify_a19_rgbw_00a43477_3
+      - light.osram_lightify_a19_rgbw_00a44fcb_3
+      - light.osram_lightify_a19_rgbw_00a4361c_3
 
 
 # Show links to resources in log and frontend
@@ -61,6 +69,9 @@ sun:
 
 config:
 
+#circadian_lighting:
+#sunset_offset: 2h
+
 # Weather Prediction
 #sensor:
 #  platform: yr
@@ -92,8 +103,3 @@ zha:
 
 zwave:
   usb_path: /dev/ttyUSB0  
-
-custom_updater:
-  card_urls:
-      - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
-      - https://raw.githubusercontent.com/ljmerza/light-entity-card/master/custom_updater.json
